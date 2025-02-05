@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hadiah Untukmu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: black;  /* Background langsung menjadi hitam */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .word {
+            display: flex;
+            gap: 15px;
+            font-size: 8vw; /* Ukuran font fleksibel */
+            font-weight: bold;
+            justify-content: center;
+            white-space: nowrap; /* Mencegah teks membungkus */
+            overflow: hidden; /* Mencegah elemen meluap */
+            max-width: 100%; /* Menjaga agar teks tidak meluap di layar besar */
+            transform-style: preserve-3d;
+        }
+
+        .word span {
+            display: inline-block;
+            transition: color 1s ease-in-out, text-shadow 1s ease-in-out, transform 0.3s ease-in-out;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 255, 255, 0.8);
+            transform: perspective(500px) rotateX(10deg) rotateY(10deg);
+        }
+
+        .word span:hover {
+            transform: perspective(500px) rotateX(0deg) rotateY(0deg) scale(1.2);
+        }
+
+        .button-container {
+            margin-top: 5vh;
+        }
+
+        .button {
+            padding: 2.5vh 6vw; /* Mengurangi padding */
+            font-size: 2vw; /* Ukuran font tombol yang lebih kecil di desktop */
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.5s ease-in-out;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(45deg, #ff007f, #007fff);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Media Queries */
+        @media (max-width: 1024px) {
+            .word {
+                font-size: 6vw;
+            }
+            .button {
+                font-size: 3.5vw;
+                padding: 3vh 6vw;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .word {
+                font-size: 7vw;
+            }
+            .button {
+                font-size: 4vw;
+                padding: 4vh 6vw;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .word {
+                font-size: 10vw;
+            }
+            .button {
+                font-size: 4.5vw;
+                padding: 4vh 8vw;
+            }
+            .button-container {
+                margin-top: 8vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="word" id="text">
+        <span>H</span>
+        <span>A</span>
+        <span>D</span>
+        <span>I</span>
+        <span>A</span>
+        <span>H</span>
+       
+    </div>
+    
+    <div class="button-container">
+        <button class="button" onclick="window.location.href='bunga.html'">Klik di sini!</button>
+    </div>
+
+    <script>
+        function generateRandomColor() {
+            // Generate random RGB color
+            let r = Math.floor(Math.random() * 256);
+            let g = Math.floor(Math.random() * 256);
+            let b = Math.floor(Math.random() * 256);
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+
+        function changeTextColor() {
+            let spans = document.querySelectorAll(".word span");
+            spans.forEach(span => {
+                let randomColor = generateRandomColor();
+                span.style.color = randomColor;
+                span.style.textShadow = `2px 2px 5px rgba(0, 0, 0, 0.5), 0 0 20px ${randomColor}, 0 0 30px ${randomColor}`;
+            });
+        }
+
+        // Menjalankan perubahan warna setiap 1 detik
+        setInterval(changeTextColor, 1000);
+    </script>
+</body>
+</html>
